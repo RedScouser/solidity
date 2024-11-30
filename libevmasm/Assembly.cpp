@@ -1641,6 +1641,14 @@ LinkerObject const& Assembly::assembleEOF() const
 			}
 		}
 
+		if (ret.bytecode.size() - sectionStart > std::numeric_limits<uint16_t>::max())
+			// TODO: Include source location. Note that origin locations we have in debug data are
+			// not usable for error reporting when compiling pure Yul because they point at the optimized source.
+			throw Error(
+				2202_error,
+				Error::Type::CodeGenerationError,
+				"Code section too large for EOF."
+			);
 		setBigEndianUint16(ret.bytecode, codeSectionSizePositions[codeSectionIndex], ret.bytecode.size() - sectionStart);
 	}
 
@@ -1682,8 +1690,13 @@ LinkerObject const& Assembly::assembleEOF() const
 	// DATALOADN loads 32 bytes from EOF data section zero padded if reading out of data bounds.
 	// In our case we do not allow DATALOADN with offsets which reads out of data bounds.
 	auto const staticAuxDataSize = maxAuxDataLoadNOffset.has_value() ? (*maxAuxDataLoadNOffset + 32u) : 0u;
-	solRequire(preDeployDataSectionSize + staticAuxDataSize < std::numeric_limits<uint16_t>::max(), AssemblyException,
-		"Invalid DATALOADN offset.");
+
+	if (preDeployDataSectionSize + staticAuxDataSize > std::numeric_limits<uint16_t>::max())
+		throw Error(
+			3965_error,
+			Error::Type::CodeGenerationError,
+			"The highest accessed data offset exceeds the maximum possible size of the static auxdata section."
+		);
 
 	// If some data was already added to data section we need to update data section refs accordingly
 	if (preDeployDataSectionSize > 0)
