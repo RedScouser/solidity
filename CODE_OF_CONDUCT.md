@@ -3,7 +3,7 @@
 ## Our Pledge
 
 In the interest of fostering an open and welcoming environment, we as
-contributors and maintainers pledge to making participation in our project and
+contributors and maintainers pledge to make participation in our project and
 our community a harassment-free experience for everyone, regardless of age, body
 size, disability, ethnicity, sex characteristics, gender identity and expression,
 level of experience, education, socioeconomic status, nationality, personal
@@ -16,9 +16,12 @@ include:
 
 * Using welcoming and inclusive language
 * Being respectful of differing viewpoints and experiences
-* Gracefully accepting constructive criticism
+* Responding thoughtfully to constructive criticism, seeking mutual understanding
 * Focusing on what is best for the community
 * Showing empathy towards other community members
+* Actively listening to feedback and seeking understanding
+* Supporting newcomers and mentoring other community members
+* Encouraging diverse perspectives in discussions and decision-making
 
 Examples of unacceptable behavior by participants include:
 
@@ -35,7 +38,11 @@ Examples of unacceptable behavior by participants include:
 
 Project maintainers are responsible for clarifying the standards of acceptable
 behavior and are expected to take appropriate and fair corrective action in
-response to any instances of unacceptable behavior.
+response to any instances of unacceptable behavior.This includes:
+
+* Reviewing reports in a timely manner
+* Clearly documenting the steps taken to address an issue
+* Applying consistent standards for all contributors and maintainers
 
 Project maintainers have the right and responsibility to remove, edit, or
 reject comments, commits, code, wiki edits, issues, and other contributions
